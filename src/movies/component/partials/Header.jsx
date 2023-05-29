@@ -1,6 +1,6 @@
 import { Layout, Menu, theme } from "antd";
 import { memo } from "react";
-import { NavLink ,useLocation} from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const { Header } = Layout;
 
@@ -11,10 +11,9 @@ function HeaderMovies() {
       label: <NavLink to="/upcoming">Phim sắp trình chiếu</NavLink>,
       key: "/upcoming"
     },
-    { label: <NavLink to="/search">Tìm kiếm</NavLink>, key: "/search" },
-    
+    { label: <NavLink to="/search">Tìm kiếm</NavLink>, key: "/search" }
   ];
-  const {pathname} = useLocation()
+  const { pathname } = useLocation();
 
   return (
     <Header
@@ -29,6 +28,7 @@ function HeaderMovies() {
         mode="horizontal"
         defaultSelectedKeys={pathname} //trang chủ lm mặc định
         items={itemMovies}
+        style={{ fontSize: "18px", width: "500px", fontWeight:'500' }}
       />
     </Header>
   );

@@ -11,7 +11,7 @@ function FooterMovies() {
           textAlign: 'center',
         }}
       >
-       Movies 2023 phim hành động
+       Movies 2023 phim tổng hợp
       </Footer>
      );
 }

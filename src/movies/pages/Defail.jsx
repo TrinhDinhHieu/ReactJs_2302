@@ -52,11 +52,11 @@ function DefailComponent() {
             <Col span={8}>
                 <div style={{padding:'10px'}}>
                     <Image src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}/>
-                    <p>{movie.original_title}</p>
+                    <p style={{marginTop:'20px'}}>{movie.original_title}</p>
                 </div>
             </Col>
             <Col span={16}>
-                <h3>{movie.title}</h3>
+                <h3 style={{margin:'20px 0'}}>{movie.title}</h3>
                 <p>{movie.overview}</p>
             </Col>
           </Row>
