@@ -1,17 +1,62 @@
-import { Col, Row } from "antd";
+import React, { useState, useEffect, memo } from "react";
+import { Row, Col, Skeleton } from "antd";
+import ListMovies from "../component/ListMovies";
 import LayoutMovies from "../component/Layout";
-import { memo } from "react";
+import Inputsearch from "../component/Inputsearch";
+import { api } from "../sevices/api";
 
-function SearchComponent() {
+const Search = () => {
+  const [loading, setLoading] = useState(false);
+  const [movies, setMovies] = useState([]);
+  // const [show, setShow] = useState(false);
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (name.trim().length > 0) {
+        // nguoi dung thuc su nhap tu khoa
+        setLoading(true);
+        // setShow(false);
+        const dataMovies = await api.searchMovieByName(name);
+        if (dataMovies.hasOwnProperty("results")) {
+          // co data
+          setMovies(dataMovies.results);
+          // setShow(true);
+        }
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [name]);
+
+  const onSearchMovie = (nameItem) => {
+    setName(nameItem);
+  };
+  if (loading) {
+    return (
+      <LayoutMovies
+        level1="Trang chủ"
+        level2="Danh sách"
+        level3="Phim xem nhiều"
+      >
+        <Row>
+          <Col span={24}>
+            <Skeleton active />
+          </Col>
+        </Row>
+      </LayoutMovies>
+    );
+  }
   return (
     <LayoutMovies level1="Trang chủ" level2="Danh sách" level3="Phim xem nhiều">
       <Row>
-        <Col span={24} >
-          <h2>This is Search</h2>
+        <Col span={20} offset={2}>
+          <Inputsearch loading={loading} search={onSearchMovie} />
+          <ListMovies movies={movies} />
         </Col>
       </Row>
     </LayoutMovies>
   );
-}
+};
 
-export default memo(SearchComponent);
+export default memo(Search);
