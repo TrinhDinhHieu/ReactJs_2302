@@ -28,6 +28,7 @@ const ListMovies = (props) => {
               }
             >
               <Meta title={item.title} />
+              {props.showDate && <p style={{fontSize:'16px',marginTop:'15px'}}>Ngày chiếu : {item.release_date}</p>}
             </Card>
           </Link>
         </Col>

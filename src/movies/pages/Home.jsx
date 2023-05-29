@@ -1,10 +1,11 @@
 import { Col, Row, Skeleton } from "antd";
-import LayoutMovies from "../component/Layout";
 import { memo, useEffect, useState } from "react";
 import { api } from "../sevices/api";
 import { helpers } from "../helpers/index";
+import LayoutMovies from "../component/Layout";
 import ListMovies from "../component/ListMovies";
 import Pagination from "../component/Pagination";
+
 function HomeComponent() {
   const [loading, setLoading] = useState(true); //vào trang loading luôn
   const [popularMovies, setPopularMovies] = useState([]);
