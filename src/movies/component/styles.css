@@ -1,11 +1,22 @@
-
-
-/* List Movies  */
-h3{
-    margin: 0;
-    padding: 0;
+.wrapper {
+  margin-top: 20px;
+  z-index: 1;
 }
-h4{
-    margin-top: 5px;
-    margin-bottom: 0;
+/* Header  */
+.header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+/* List Movies  */
+h3 {
+  margin: 0;
+  padding: 0;
+}
+h4 {
+  margin-top: 5px;
+  margin-bottom: 0;
 }

@@ -35,7 +35,7 @@ function DefailComponent() {
 
     if(loading){
         return(
-            <LayoutMovies level1="Trang chủ" level2="Chi tiết" level3={slug}>
+            <LayoutMovies level1="Trang chủ" level2="Chi tiết" level3={slug} >
             <Row>
               <Col span={24} >
                 <Skeleton active/>

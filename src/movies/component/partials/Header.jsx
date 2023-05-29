@@ -1,7 +1,7 @@
 import { Layout, Menu, theme } from "antd";
 import { memo } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-
+import '../../component/styles.css'
 const { Header } = Layout;
 
 function HeaderMovies() {
@@ -17,10 +17,7 @@ function HeaderMovies() {
 
   return (
     <Header
-      style={{
-        display: "flex",
-        alignItems: "center"
-      }}
+      className="header"
     >
       <div className="demo-logo" />
       <Menu
@@ -28,7 +25,7 @@ function HeaderMovies() {
         mode="horizontal"
         defaultSelectedKeys={pathname} //trang chủ lm mặc định
         items={itemMovies}
-        style={{ fontSize: "18px", width: "500px", fontWeight:'500' }}
+        style={{ fontSize: "18px", width: "500px", fontWeight: "500" }}
       />
     </Header>
   );

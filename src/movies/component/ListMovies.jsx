@@ -22,7 +22,7 @@ const ListMovies = (props) => {
     return formattedDate;
   };
   return (
-    <Row >
+    <Row className="wrapper">
       {props.movies.map((item, index) => (
         <Col span={6} key={index}>
           <Link to={`/movie/${slugify(item.title)}/${item.id}`}>
