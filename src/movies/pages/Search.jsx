@@ -13,7 +13,8 @@ const Search = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (name.trim().length > 0) {// ktra khi có nhập input
+      if (name.trim().length > 0) {
+        // ktra khi có nhập input
         // nguoi dung thuc su nhap tu khoa
         setLoading(true);
         // setShow(false);
@@ -35,11 +36,7 @@ const Search = () => {
   };
   if (loading) {
     return (
-      <LayoutMovies
-        level1="Trang chủ"
-        level2="Danh sách"
-        level3="Tìm kiếm"
-      >
+      <LayoutMovies level1="Trang chủ" level2="Danh sách" level3="Tìm kiếm">
         <Row>
           <Col span={24}>
             <Skeleton active />
@@ -49,11 +46,21 @@ const Search = () => {
     );
   }
   return (
-    <LayoutMovies level1="Trang chủ" level2="Danh sách" level3="T ìm kiếm">
+    <LayoutMovies level1="Trang chủ" level2="Danh sách" level3="Tìm kiếm">
       <Row>
         <Col span={20} offset={2}>
           <Inputsearch loading={loading} search={onSearchMovie} />
           <ListMovies movies={movies} />
+          {/* Map  */}
+          {/* <iframe
+            title="New York"
+            width="342"
+            height="306"
+            id="gmap_canvas"
+            src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            scrolling="no"
+          ></iframe> */}
+          
         </Col>
       </Row>
     </LayoutMovies>

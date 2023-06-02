@@ -14,7 +14,6 @@ const router = createBrowserRouter([
     element: (
       //sử dụng Suspense để khi chạy lầ đầu tiên sẽ loading component lần đầu tiên
       <Suspense fallback={<SpinLoader />}>
-        {" "}
         <Home />
       </Suspense>
     ),
@@ -24,7 +23,6 @@ const router = createBrowserRouter([
     path: "/upcoming",
     element: (
       <Suspense fallback={<SpinLoader />}>
-        {" "}
         <UpComing />
       </Suspense>
     ),
@@ -34,7 +32,6 @@ const router = createBrowserRouter([
     path: "/search",
     element: (
       <Suspense fallback={<SpinLoader />}>
-        {" "}
         <Search />
       </Suspense>
     ),
@@ -45,7 +42,6 @@ const router = createBrowserRouter([
     path: "/movie/:slug/:id",//2 chấm là để nhận id tuef url
     element: (
       <Suspense fallback={<SpinLoader />}>
-        {" "}
         <Defail />
       </Suspense>
     ),
