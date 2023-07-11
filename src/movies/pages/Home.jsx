@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Col, Row, Skeleton } from "antd";
 import { memo, useEffect, useState } from "react";
 import { api } from "../sevices/api";

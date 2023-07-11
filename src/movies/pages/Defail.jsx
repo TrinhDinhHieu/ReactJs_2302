@@ -1,23 +1,26 @@
+/* eslint-disable no-unused-vars */
 import { memo, useEffect, useState } from "react";
 // import trailer video
-import "react-modal-video/css/modal-video.min.css";
-import ModalVideo from "react-modal-video";
+// import "react-modal-video/css/modal-video.min.css";
+// import ModalVideo from "react-modal-video";
 
 import YouTube from "react-youtube";
 import { Col, Row, Image, Skeleton, Button, Carousel } from "antd";
 import LayoutMovies from "../component/Layout";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../sevices/api";
 import { helpers } from "../helpers";
+import { useAuth } from "../hook/useAuth";
 
 function DefailComponent() {
   const { id, slug } = useParams();
   //state bật video
-  const [isOpen, setOpen] = useState(false);
-
   const [loading, setLoading] = useState(true); //vào trang loading luôn
   const [error, setError] = useState(null);
   const [movie, setMovie] = useState({});
+  const [favoirte, setFavoirte] = useState(helpers.getDataMovieToLocal(id))
+  const { user } = useAuth(); //lấy info ng dùng đã dăng nhập trong local
+  const navigate = useNavigate();
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -37,6 +40,9 @@ function DefailComponent() {
     };
     getData();
   }, [id]);
+
+  // const checkDataMovieLocal = helpers.getDataMovieToLocal(id);
+
   //Event play video trailer
   const onPlayerReady = (event) => {
     event.target.pauseVideo();
@@ -60,6 +66,26 @@ function DefailComponent() {
       </LayoutMovies>
     );
   }
+  const addMovie = () => {
+    if (!user) {
+      //chưa đăng nhập
+      navigate("/login");
+    } else {
+      //đã đăng nhập
+      //lưu info của film vào local
+      helpers.addDataMovieToLocal(movie);
+      setFavoirte(false)
+    }
+  };
+  const removevMove = (id)=>{
+    if(!user){
+      navigate('/login');
+
+    }else{
+      helpers.removeMovieLocalId(id);
+      setFavoirte(true)
+    }
+  }
   return (
     <LayoutMovies level1="Trang chủ" level2="Chi tiết" level3={slug}>
       <Row>
@@ -80,15 +106,31 @@ function DefailComponent() {
                 <Image
                   src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                 />
-                <p style={{ marginTop: "20px", fontSize: "18px" }}>
+                <p
+                  style={{
+                    marginTop: "20px",
+                    fontSize: "22px",
+                    fontWeight: "700"
+                  }}
+                >
                   {movie.original_title}
                 </p>
+                {/* custom Button yêu thích  */}
+                {favoirte ? (
+                  <Button type="primary" onClick={() => addMovie()}>
+                   Chưa yêu thích
+                  </Button>
+                ) : (
+                  <Button type="primary" danger onClick={() => removevMove(id)}>
+                   Đã yêu thích
+                  </Button>
+                )}
               </div>
             </Col>
             <Col span={16}>
               <div style={{ padding: "10px" }}>
                 <h3 style={{ margin: "20px 0" }}>{movie.title}</h3>
-                <p style={{fontSize:'16px'}}>{movie.overview}</p>
+                <p style={{ fontSize: "16px" }}>{movie.overview}</p>
                 <div
                   style={{
                     display: "flex",

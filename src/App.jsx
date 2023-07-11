@@ -1,3 +1,5 @@
+/* eslint-disable react/no-children-prop */
+/* eslint-disable no-unused-vars */
 // Component là con của UI, thành phần cấu tạo lên 1 UI
 // khi có nhiều Component sẽ tạo nên 1 UI hoàn chỉnh
 // state : trạng thái của ứng dụng.

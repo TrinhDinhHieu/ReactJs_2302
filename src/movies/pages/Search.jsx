@@ -3,14 +3,15 @@ import { Row, Col, Skeleton } from "antd";
 import { api } from "../sevices/api";
 import ListMovies from "../component/ListMovies";
 import LayoutMovies from "../component/Layout";
-import Inputsearch from "../component/Inputsearch";
-
+// import Inputsearch from "../component/Inputsearch";
+import { useParams } from "react-router-dom";
 const Search = () => {
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   // const [show, setShow] = useState(false);
-  const [name, setName] = useState("");
-
+  // const [name, setName] = useState("");
+const {nameMovie} = useParams();
+console.log(nameMovie);
   useEffect(() => {
     const fetchData = async () => {
       if (name.trim().length > 0) {
@@ -31,9 +32,9 @@ const Search = () => {
     fetchData();
   }, [name]);
 
-  const onSearchMovie = (nameItem) => {
-    setName(nameItem);
-  };
+  // const onSearchMovie = (nameItem) => {
+  //   setName(nameItem);
+  // };
   if (loading) {
     return (
       <LayoutMovies level1="Trang chủ" level2="Danh sách" level3="Tìm kiếm">
@@ -46,21 +47,12 @@ const Search = () => {
     );
   }
   return (
-    <LayoutMovies level1="Trang chủ" level2="Danh sách" level3="Tìm kiếm">
+    <LayoutMovies level1="Trang chủ" level2="Danh sách" level3="`Tìm kiếm phim : ${name}`">
       <Row>
         <Col span={20} offset={2}>
-          <Inputsearch loading={loading} search={onSearchMovie} />
+          {/* <Inputsearch loading={loading} search={onSearchMovie} /> */}
           <ListMovies movies={movies} />
-          {/* Map  */}
-          {/* <iframe
-            title="New York"
-            width="342"
-            height="306"
-            id="gmap_canvas"
-            src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            scrolling="no"
-          ></iframe> */}
-          
+          {/* Map  */}   
         </Col>
       </Row>
     </LayoutMovies>

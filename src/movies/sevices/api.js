@@ -20,14 +20,20 @@ const UpCommingMovie = async (startDate, endDate,page = 1) => {
     return await response.status === 200 ? await response.data : {};
 };
 //Sarch Movies
-const searchMovieByName = async (name = "") => {
-  const url = `https://api.themoviedb.org/3/search/movie?query=${name}&api_key=cfe422613b250f702980a3bbf9e90716&page=1`;
+const searchMovieByName = async (keywork,page=1) => {
+  const url = `https://api.themoviedb.org/3/search/movie?query=${keywork}&api_key=cfe422613b250f702980a3bbf9e90716&page=${page}`;
   const response = await axios.get(url);
   return (await response.status) === 200 ? await response.data : {};
 };
+const getDataMoviesByDate = async (startDate, endDate, page = 1) => {
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=0aecc06bb4fadb06b5f071fef0c2ce6d&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&release_date.gte=${startDate}&release_date.lte=${endDate}&with_release_type=3|2`;
+  const response = await axios.get(url);
+  return await response.status === 200 ? await response.data : {};
+}  
 export const api = {
   getDataPopularMovies,
   getDataMoviebyId,
   searchMovieByName,
-  UpCommingMovie
+  UpCommingMovie,
+  getDataMoviesByDate
 };
